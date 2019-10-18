@@ -85,7 +85,7 @@ def getItemFromURL(URL):
 	
 def getURLS():
 	urlList = []
-	url = "https://www.finecooking.com/?s=&es%5Bcategory%5D%5Band%5D%5B0%5D=main-course"
+	url = "Website Hidden"
 	result = requests.get(url)
 	resultContent = result.content
 	soupResult = BeautifulSoup(resultContent,features="html.parser")
@@ -107,21 +107,21 @@ def getURLS():
 	urls = soupResult.findAll("a")
 	
 	for item in urls:
-		if 'https://www.finecooking.com/recipe/' in item.get('href'):
+		if 'Website Hidden' in item.get('href'):
 			urlList.append(item.get('href'))
 	
 	page = 2
 	while(page <= int(count) ):
 		print(("reading page # " + str(page)))
 		time.sleep(1)
-		url = "https://www.finecooking.com/page/" + str(page) + "?s=&es%5Bcategory%5D%5Band%5D%5B0%5D=main-course"
+		url = "Website Hidden/" + str(page) + "Website Hidden"
 		result = requests.get(url)
 		resultContent = result.content
 		soupResult = BeautifulSoup(resultContent,features="html.parser")
 		urls = soupResult.findAll("a")
 	
 		for item in urls:
-			if 'https://www.finecooking.com/recipe/' in item.get('href'):
+			if 'Website Hidden' in item.get('href'):
 					urlList.append(item.get('href'))
 		
 		
@@ -146,7 +146,7 @@ def SendItemToServer(MyItem):
 	}
 
 	data = open(MyItem.imageName, 'rb').read()
-	response = requests.post(('https://mighty-wave-74435.herokuapp.com/parse/files/' + MyItem.imageName), headers=headers, data=data)
+	response = requests.post(('ENTER SERVER URL HERE' + MyItem.imageName), headers=headers, data=data)
 
 	dict = response.json()
 
@@ -182,7 +182,7 @@ def SendItemToServer(MyItem):
 	}
 
 
-	response = requests.post('https://mighty-wave-74435.herokuapp.com/parse/classes/Dinner', headers=headers, data=data)
+	response = requests.post('SERVER URL HERE', headers=headers, data=data)
 
 	print(response.json())
 	
